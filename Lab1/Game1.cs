@@ -17,7 +17,9 @@ namespace Lab1
 
         // Background
         Texture2D BackgroundTexture;
-        private Rectangle BGRectangle = new Rectangle();
+
+        // Tree
+        Texture2D TreeTexture;
 
         // Player
         Texture2D PlayerTexture;
@@ -65,6 +67,7 @@ namespace Lab1
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             BackgroundTexture = Content.Load<Texture2D>("background");
+            TreeTexture = Content.Load<Texture2D>("tree");
 
             PlayerTexture = Content.Load<Texture2D>("player");
             animeSeq = new CelAnimationSequence(PlayerTexture, 48, 48, 1/ 12.0f);
@@ -97,10 +100,7 @@ namespace Lab1
             {
                 PlayerPosition.X += 4;
                 playerSpriteRow = 4;
-                if (SE == SpriteEffects.FlipHorizontally)
-                {
-                    SE = SpriteEffects.None;
-                }
+                SE = SpriteEffects.None;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -132,6 +132,7 @@ namespace Lab1
             _spriteBatch.Draw(BackgroundTexture, Vector2.Zero, Color.White);
             animPlay.Draw(_spriteBatch, PlayerPosition, 3f, SE);
             foxPlay.Draw(_spriteBatch, FoxPos, 2f, SpriteEffects.None);
+            _spriteBatch.Draw(TreeTexture, new Vector2(500, 500), Color.White);
 
             _spriteBatch.End();
             base.Draw(gameTime);
