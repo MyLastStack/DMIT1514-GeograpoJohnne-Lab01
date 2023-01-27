@@ -58,18 +58,16 @@ namespace Lab1
                     // Advance the frame index looping as appropriate...
                     celIndex = (celIndex + 1) % celAnimationSequence.CelCount;
 
-
-
                     celSourceRectangle.X = celIndex * celSourceRectangle.Width;
 
-                    if (celIndex == 0)
-                    {
-                        celSourceRectangle.Y += celSourceRectangle.Height;
-                        if (celSourceRectangle.Y >= celAnimationSequence.Texture.Height)
-                        {
-                            celSourceRectangle.Y = 0;
-                        }
-                    }
+                    //if (celIndex == 0)
+                    //{
+                    //    celSourceRectangle.Y += celSourceRectangle.Height;
+                    //    if (celSourceRectangle.Y >= celAnimationSequence.Texture.Height)
+                    //    {
+                    //        celSourceRectangle.Y = 0;
+                    //    }
+                    //}
                 }
             }
         }

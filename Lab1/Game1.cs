@@ -15,9 +15,10 @@ namespace Lab1
         Texture2D ForestBGTexture;
         private Rectangle ForestBGRectangle = new Rectangle();
 
-        Texture2D WitchTexture;
-        private Vector2 WitchDirection = new Vector2();
-        private Rectangle WitchRectangle = new Rectangle();
+        Texture2D PlayerTexture;
+        private Vector2 PlayerPosition = new Vector2(300, 300);
+        private Vector2 PlayerDirection = new Vector2();
+        private Rectangle PlayerRectangle = new Rectangle();
 
         public Game1()
         {
@@ -29,13 +30,11 @@ namespace Lab1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            WitchDirection = new Vector2(1f ,0);
-
 
             base.Initialize();
 
-            WitchRectangle = WitchTexture.Bounds;
-            WitchRectangle = new Rectangle(Point.Zero, new Point(WitchRectangle.Width * 5, WitchRectangle.Height * 5));
+            PlayerRectangle = PlayerTexture.Bounds;
+            PlayerRectangle = new Rectangle(Point.Zero, new Point(PlayerRectangle.Width * 5, PlayerRectangle.Height * 5));
         }
 
         protected override void LoadContent()
@@ -44,8 +43,8 @@ namespace Lab1
 
             ForestBGTexture = Content.Load<Texture2D>("ForestPreview");
 
-            WitchTexture = Content.Load<Texture2D>("WitchRun");
-            animeSeq = new CelAnimationSequence(WitchTexture, 32, 48, 1/ 8.0f);
+            PlayerTexture = Content.Load<Texture2D>("player");
+            animeSeq = new CelAnimationSequence(PlayerTexture, 48, 48, 1/ 6.0f);
 
             animPlay = new CelAnimationPlayer();
             animPlay.Play(animeSeq);
@@ -62,11 +61,11 @@ namespace Lab1
             // TODO: Add your update logic here
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                WitchDirection.X -= 10;
+                PlayerPosition.X -= 4;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                WitchDirection.X += 10;
+                PlayerPosition.X += 4;
             }
 
             animPlay.Update(gameTime);
@@ -83,7 +82,7 @@ namespace Lab1
             _spriteBatch.Draw(ForestBGTexture, new Vector2(ForestBGRectangle.Location.X, -300), Color.White);
 
 
-            animPlay.WitchDraw(_spriteBatch, new Vector2(300, 300), SpriteEffects.None);
+            animPlay.WitchDraw(_spriteBatch, PlayerPosition, SpriteEffects.None);
 
             _spriteBatch.End();
             base.Draw(gameTime);
