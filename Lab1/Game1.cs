@@ -62,7 +62,7 @@ namespace Lab1
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 PlayerPosition.X -= 4;
-                animPlay.WitchDraw(_spriteBatch, PlayerPosition, SpriteEffects.FlipHorizontally);
+                
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
