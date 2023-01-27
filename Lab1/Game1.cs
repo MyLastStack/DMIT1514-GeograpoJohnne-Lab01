@@ -55,8 +55,17 @@ namespace Lab1
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            //animPlay.Play(animeSeq);
 
+            // TODO: Add your update logic here
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                WitchDirection.X -= 1;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                WitchDirection.X += 1;
+            }
 
             animPlay.Update(gameTime);
             base.Update(gameTime);
@@ -72,7 +81,7 @@ namespace Lab1
             _spriteBatch.Draw(ForestBGTexture, new Vector2(ForestBGRectangle.Location.X, -300), Color.White);
 
 
-            animPlay.Draw(_spriteBatch, new Vector2(300, 400), SpriteEffects.None);
+            animPlay.WitchDraw(_spriteBatch, new Vector2(300, 300), SpriteEffects.None);
 
             _spriteBatch.End();
             base.Draw(gameTime);

@@ -84,5 +84,13 @@ namespace Lab1
                 spriteBatch.Draw(celAnimationSequence.Texture, position, celSourceRectangle, Color.White, 0.0f, Vector2.Zero, 1.0f, spriteEffects, 0.0f);
             }
         }
+
+        public void WitchDraw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects spriteEffects)
+        {
+            if (celAnimationSequence != null)
+            {
+                spriteBatch.Draw(celAnimationSequence.Texture, position, celSourceRectangle, Color.White, 0.0f, Vector2.Zero, 3.0f, spriteEffects, 0.0f);
+            }
+        }
     }
 }
