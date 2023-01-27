@@ -76,19 +76,11 @@ namespace Lab1
         /// <summary>
         /// Draws the current cel of the animation.
         /// </summary>
-        public void Draw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects spriteEffects)
+        public void Draw(SpriteBatch spriteBatch, Vector2 position, float scale, SpriteEffects spriteEffects)
         {
             if (celAnimationSequence != null)
             {
-                spriteBatch.Draw(celAnimationSequence.Texture, position, celSourceRectangle, Color.White, 0.0f, Vector2.Zero, 1.0f, spriteEffects, 0.0f);
-            }
-        }
-
-        public void PlayDraw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects spriteEffects)
-        {
-            if (celAnimationSequence != null)
-            {
-                spriteBatch.Draw(celAnimationSequence.Texture, position, celSourceRectangle, Color.White, 0.0f, Vector2.Zero, 3.0f, spriteEffects, 0.0f);
+                spriteBatch.Draw(celAnimationSequence.Texture, position, celSourceRectangle, Color.White, 0.0f, Vector2.Zero, scale, spriteEffects, 0.0f);
             }
         }
     }
