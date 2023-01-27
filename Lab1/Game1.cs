@@ -29,6 +29,8 @@ namespace Lab1
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            WitchDirection = new Vector2(1f ,0);
+
 
             base.Initialize();
 
@@ -60,11 +62,11 @@ namespace Lab1
             // TODO: Add your update logic here
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                WitchDirection.X -= 1;
+                WitchDirection.X -= 10;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                WitchDirection.X += 1;
+                WitchDirection.X += 10;
             }
 
             animPlay.Update(gameTime);
