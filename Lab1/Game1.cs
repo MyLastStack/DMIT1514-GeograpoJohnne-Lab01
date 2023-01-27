@@ -62,7 +62,7 @@ namespace Lab1
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 PlayerPosition.X -= 4;
-                
+                animPlay.PlayDraw(_spriteBatch, PlayerPosition, SpriteEffects.None);
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
@@ -83,7 +83,7 @@ namespace Lab1
             _spriteBatch.Draw(ForestBGTexture, new Vector2(ForestBGRectangle.Location.X, -300), Color.White);
 
 
-            animPlay.WitchDraw(_spriteBatch, PlayerPosition, SpriteEffects.None);
+            animPlay.PlayDraw(_spriteBatch, PlayerPosition, SpriteEffects.None);
 
             _spriteBatch.End();
             base.Draw(gameTime);

@@ -83,7 +83,7 @@ namespace Lab1
             }
         }
 
-        public void WitchDraw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects spriteEffects)
+        public void PlayDraw(SpriteBatch spriteBatch, Vector2 position, SpriteEffects spriteEffects)
         {
             if (celAnimationSequence != null)
             {
