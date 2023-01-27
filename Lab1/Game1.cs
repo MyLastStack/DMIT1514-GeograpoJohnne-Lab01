@@ -12,16 +12,22 @@ namespace Lab1
         CelAnimationPlayer animPlay;
         CelAnimationSequence animeSeq;
 
+        // Background
         Texture2D ForestBGTexture;
         private Rectangle ForestBGRectangle = new Rectangle();
 
+        // Player
         Texture2D PlayerTexture;
-        private Vector2 PlayerPosition = new Vector2(300, 325);
-        private SpriteEffects SE = SpriteEffects.None;
-        private int spriterow = 1;
-        private Vector2 PlayerDirection = new Vector2();
+        private Vector2 PlayerPosition = new Vector2();
+        private SpriteEffects SE = SpriteEffects.None; // To give the ability to change spriteeffects of the sprite
+        private int playerSpriteRow = 1;
         private Rectangle PlayerRectangle = new Rectangle();
 
+        // Fox
+        Texture2D FoxTexture;
+        private Vector2 FoxPos = new Vector2(0, 178); // Enough to show the fox in front of the player sprite
+        private int foxSpriteRow = 1;
+        private Rectangle FoxRectangle = new Rectangle();
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -35,8 +41,18 @@ namespace Lab1
 
             base.Initialize();
 
+            // Changing the game window size to be the same as the background
+            // The background just has an unusually massive sky area that I could've photoshopped off
+            _graphics.PreferredBackBufferWidth = ForestBGTexture.Width;
+            _graphics.PreferredBackBufferHeight = ForestBGTexture.Height;
+            _graphics.ApplyChanges();
+
             PlayerRectangle = PlayerTexture.Bounds;
             PlayerRectangle = new Rectangle(Point.Zero, new Point(PlayerRectangle.Width * 5, PlayerRectangle.Height * 5));
+            // 180 is just a random number to put the character on a proper spot
+            PlayerPosition = new Vector2(50, _graphics.PreferredBackBufferHeight - 180);
+
+            
         }
 
         protected override void LoadContent()
@@ -64,13 +80,13 @@ namespace Lab1
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 PlayerPosition.X -= 4;
-                spriterow = 4;
+                playerSpriteRow = 4;
                 SE = SpriteEffects.FlipHorizontally;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 PlayerPosition.X += 4;
-                spriterow = 4;
+                playerSpriteRow = 4;
                 if (SE == SpriteEffects.FlipHorizontally)
                 {
                     SE = SpriteEffects.None;
@@ -78,10 +94,10 @@ namespace Lab1
             }
             else
             {
-                spriterow = 1;
+                playerSpriteRow = 1;
             }
 
-            animPlay.Update(gameTime, spriterow);
+            animPlay.Update(gameTime, playerSpriteRow);
             base.Update(gameTime);
         }
 
@@ -92,10 +108,9 @@ namespace Lab1
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
-            _spriteBatch.Draw(ForestBGTexture, new Vector2(ForestBGRectangle.Location.X, -300), Color.White);
-
-
+            _spriteBatch.Draw(ForestBGTexture, Vector2.Zero, Color.White);
             animPlay.PlayDraw(_spriteBatch, PlayerPosition, SE);
+
 
             _spriteBatch.End();
             base.Draw(gameTime);
