@@ -45,8 +45,9 @@ namespace Lab1
         /// Update the state of the CelAnimationPlayer.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, int row)
         {
+            celSourceRectangle.Y = celSourceRectangle.Height * row;
             if (celAnimationSequence != null)
             {
                 celTimeElapsed += (float)gameTime.ElapsedGameTime.TotalSeconds;

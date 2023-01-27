@@ -16,7 +16,9 @@ namespace Lab1
         private Rectangle ForestBGRectangle = new Rectangle();
 
         Texture2D PlayerTexture;
-        private Vector2 PlayerPosition = new Vector2(300, 300);
+        private Vector2 PlayerPosition = new Vector2(300, 325);
+        private SpriteEffects SE = SpriteEffects.None;
+        private int spriterow = 1;
         private Vector2 PlayerDirection = new Vector2();
         private Rectangle PlayerRectangle = new Rectangle();
 
@@ -44,7 +46,7 @@ namespace Lab1
             ForestBGTexture = Content.Load<Texture2D>("ForestPreview");
 
             PlayerTexture = Content.Load<Texture2D>("player");
-            animeSeq = new CelAnimationSequence(PlayerTexture, 48, 48, 1/ 6.0f);
+            animeSeq = new CelAnimationSequence(PlayerTexture, 48, 48, 1/ 12.0f);
 
             animPlay = new CelAnimationPlayer();
             animPlay.Play(animeSeq);
@@ -62,14 +64,24 @@ namespace Lab1
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 PlayerPosition.X -= 4;
-                animPlay.PlayDraw(_spriteBatch, PlayerPosition, SpriteEffects.None);
+                spriterow = 4;
+                SE = SpriteEffects.FlipHorizontally;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 PlayerPosition.X += 4;
+                spriterow = 4;
+                if (SE == SpriteEffects.FlipHorizontally)
+                {
+                    SE = SpriteEffects.None;
+                }
+            }
+            else
+            {
+                spriterow = 1;
             }
 
-            animPlay.Update(gameTime);
+            animPlay.Update(gameTime, spriterow);
             base.Update(gameTime);
         }
 
@@ -83,7 +95,7 @@ namespace Lab1
             _spriteBatch.Draw(ForestBGTexture, new Vector2(ForestBGRectangle.Location.X, -300), Color.White);
 
 
-            animPlay.PlayDraw(_spriteBatch, PlayerPosition, SpriteEffects.None);
+            animPlay.PlayDraw(_spriteBatch, PlayerPosition, SE);
 
             _spriteBatch.End();
             base.Draw(gameTime);
